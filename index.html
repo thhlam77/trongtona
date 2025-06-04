@@ -352,6 +352,108 @@
     }
   });
 </script>
+<div class='codepro-music-box'>
+  <button class='codepro-music-box-toggle-btn'>
+    <a title='Play music'><i class='fa fa-music'></i></a>
+  </button>
+  <div class='codepro-music-holder'></div>
+</div>
 
+<style>
+  .codepro-music-box {
+    position: fixed;
+    width: 300px;
+    height: 160px;
+    z-index: 120;
+    bottom: 30px;
+    left: 30px;
+  }
+
+  .codepro-music-box a {
+    color: #fff;
+  }
+
+  @media (max-width: 991px) {
+    .codepro-music-box {
+      width: 250px;
+      height: 120px;
+      left: 30px;
+    }
+  }
+
+  .codepro-music-box .codepro-music-holder {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #eee;
+    position: absolute;
+    left: 0;
+    top: -30px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+  }
+
+  .codepro-music-box .codepro-music-holder iframe {
+    width: 100%;
+    height: 100%;
+  }
+
+  .codepro-music-box button {
+    background: rgba(0, 0, 0, 0.1);
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    color: #fff;
+    border: 1px solid #e6e6e6;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border-radius: 50%;
+  }
+
+  @media (max-width: 991px) {
+    .codepro-music-box button {
+      left: 0;
+    }
+  }
+
+  .codepro-music-box .toggle-codepro-music-box {
+    top: -50px;
+    visibility: visible;
+    opacity: 1;
+  }
+</style>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    const musicBtn = $(".codepro-music-box-toggle-btn");
+    const musicBox = $(".codepro-music-holder");
+    let hasIframe = false;
+
+    musicBtn.on("click", function () {
+      musicBox.toggleClass("toggle-codepro-music-box");
+
+      if (!hasIframe) {
+        const iframe = $("<iframe>", {
+          src: "https://www.youtube.com/embed/Xh0YQp9odv4?autoplay=1",
+          frameborder: 0,
+          allow: "autoplay; encrypted-media",
+          allowfullscreen: true
+        }).css({ width: "100%", height: "100%" });
+
+        musicBox.append(iframe);
+        hasIframe = true;
+      }
+
+      return false;
+    });
+  });
+</script>
 </body>
 </html>
